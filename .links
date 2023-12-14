@@ -1,0 +1,29 @@
+https://github.com/juliossena/vendas-online-web/blob/main/tsconfig.node.json
+
+
+https://vitejs.dev
+
+https://prettier.io
+
+https://ant.design
+
+
+npm create vite@latest
+
+npm run dev
+
+npm install --save-dev @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-import eslint-plugin-prettier eslint-plugin-react eslint-plugin-simple-import-sort pre-commit prettier
+
+npm run lint
+
+https://ant.design/components/overview
+npm install antd
+
+
+https://styled-components.com/docs/basics#installation
+npm install styled-components
+
+npm i --save-dev @types/styled-components
+
+
+
