@@ -1,10 +1,7 @@
 {
-    "editor.codeActionsOnSave":
-    {
-        "source.fixAll.eslint": true
-    },
-    "eslint.validate": [
-        "javascript"
-    ],
-    "javascript.updateImportsOnFileMove.enabled": "always"
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"],
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }
