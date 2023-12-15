@@ -7,6 +7,8 @@ https://prettier.io
 
 https://ant.design
 
+https://axios-http.com/ptbr/docs/intro
+
 
 npm create vite@latest
 
@@ -25,5 +27,6 @@ npm install styled-components
 
 npm i --save-dev @types/styled-components
 
-
+Comunicação com banco de dados
+npm install axios
 
