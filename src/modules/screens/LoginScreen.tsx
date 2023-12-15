@@ -1,3 +1,5 @@
+import { Input } from "antd";
+
 import {
   BackgroundImage,
   ContainerLogin,
@@ -12,6 +14,8 @@ const LoginScreen = () => {
       <ContainerLogin>
         <LimitedContainer>
           <LogoImage src="./logo4b.png"></LogoImage>
+          <Input title="Usuário" />
+          <Input title="Senha" />
         </LimitedContainer>
       </ContainerLogin>
       <BackgroundImage src="./background.png" />
