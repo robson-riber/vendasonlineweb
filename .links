@@ -11,6 +11,9 @@ https://axios-http.com/ptbr/docs/intro
 
 https://reactrouter.com/en/main/start/tutorials
 
+https://legacy.reactjs.org/docs/hooks-intro.html
+
+
 npm create vite@latest
 
 npm run dev
