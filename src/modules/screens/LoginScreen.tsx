@@ -4,6 +4,7 @@ import Button from "../../shared/components/buttons/button/Button";
 import Input from "../../shared/components/inputs/input/input";
 import { useGlobalContext } from "../../shared/hooks/useGlobalContext";
 import { useRequests } from "../../shared/hooks/useRequests";
+import { UserType } from "../login/types/UserType";
 import {
   BackgroundImage,
   ContainerLogin,
@@ -27,12 +28,13 @@ const LoginScreen = () => {
     setPassword(event.target.value);
   };
 
-  const handleLogin = () => {
-    setAccessToken("Novo Login");
-    postRequest("http://localhost:8080/auth", {
+  const handleLogin = async () => {
+    const user = await postRequest<UserType>("http://localhost:8080/auth", {
       email: email,
       password: password,
     });
+
+    setAccessToken(user?.accessToken || "");
   };
 
   return (
