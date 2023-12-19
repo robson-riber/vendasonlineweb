@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 
 import Button from "../../shared/components/buttons/button/Button";
@@ -15,7 +14,7 @@ import {
 } from "../styles/loginScreen.style";
 
 const LoginScreen = () => {
-  const { accessToken, setAccessToken } = useGlobalContext();
+  const { setAccessToken } = useGlobalContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { postRequest, loading } = useRequests();
@@ -41,7 +40,9 @@ const LoginScreen = () => {
       <ContainerLogin>
         <LimitedContainer>
           <LogoImage src="./logo4b.png"></LogoImage>
-          <TitleLogin type="secondary">LOGIN ({accessToken})</TitleLogin>
+          <TitleLogin level={2} type="secondary">
+            LOGIN
+          </TitleLogin>
           <Input
             title="Usuário"
             margem="40px 0px 16px 0px"
