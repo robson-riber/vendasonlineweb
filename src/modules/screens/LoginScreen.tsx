@@ -3,7 +3,6 @@ import { useState } from "react";
 import Button from "../../shared/components/buttons/button/Button";
 import Input from "../../shared/components/inputs/input/input";
 import { useRequests } from "../../shared/hooks/useRequests";
-import { UserType } from "../login/types/UserType";
 import {
   BackgroundImage,
   ContainerLogin,
