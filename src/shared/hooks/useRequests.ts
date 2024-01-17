@@ -7,53 +7,44 @@ import { ProductRoutesEnum } from "../../modules/product/routes";
 import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus";
 import { URL_AUTH } from "../constants/urls";
 import { setAuthorizationToken } from "../functions/connection/auth";
-import { connectionAPIPost } from "../functions/connection/connectionAPI";
+import ConnectionAPI, {
+  connectionAPIPost,
+  MethodType,
+} from "../functions/connection/connectionAPI";
 import { useGlobalContext } from "./useGlobalContext";
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
   const { setNotification, setUser } = useGlobalContext();
 
-  const getRequest = async (url: string) => {
-    setLoading(true);
-
-    return await axios({
-      method: "get",
-      url: url,
-    })
-      .then((result) => {
-        alert(`Login efetuado com sucesso! ${result.data.accessToken} `);
-        return result.data;
-      })
-      .catch(() => {
-        alert("Erro");
-      });
-  };
-
-  const postRequest = async <T>(
+  const request = async <T>(
     url: string,
-    body: unknown,
+    method: MethodType,
+    saveGlobal?: (object: T) => void,
+    body?: unknown,
   ): Promise<T | undefined> => {
     setLoading(true);
 
-    const returnData = await connectionAPIPost<T>(url, body)
+    const returnObject: T | undefined = await ConnectionAPI.connect<T>(
+      url,
+      method,
+      body,
+    )
       .then((result) => {
-        //alert("login ok");
-        setNotification("deu certo", "success");
-        navigate(ProductRoutesEnum.PRODUCT);
+        alert(`Login efetuado com sucesso! ${result}`);
+        if (saveGlobal) {
+          saveGlobal(result);
+        }
         return result;
       })
       .catch((error: Error) => {
-        //alert("dados incorretos");
         setNotification(error.message, "error");
         return undefined;
+        alert("Erro");
       });
 
-    setLoading(false);
-
-    return returnData;
+    return returnObject;
   };
 
   const authRequest = async (body: unknown): Promise<void> => {
@@ -78,8 +69,7 @@ export const useRequests = () => {
 
   return {
     loading,
-    getRequest,
-    postRequest,
+    request,
     authRequest,
   };
 };
