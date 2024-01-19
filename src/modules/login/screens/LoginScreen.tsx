@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Button from "../../shared/components/buttons/button/Button";
-import Input from "../../shared/components/inputs/input/input";
-import { useRequests } from "../../shared/hooks/useRequests";
+import Button from "../../../shared/components/buttons/button/Button";
+import Input from "../../../shared/components/inputs/input/input";
+import { useRequests } from "../../../shared/hooks/useRequests";
 import {
   BackgroundImage,
   ContainerLogin,
@@ -10,9 +11,10 @@ import {
   LimitedContainer,
   LogoImage,
   TitleLogin,
-} from "../styles/loginScreen.style";
+} from "../../styles/loginScreen.style";
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
   //const { setAccessToken } = useGlobalContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,12 +29,10 @@ const LoginScreen = () => {
   };
 
   const handleLogin = () => {
-    authRequest({
+    authRequest(navigate, {
       email: email,
       password: password,
     });
-
-    //setAccessToken(user?.accessToken || "");
   };
 
   return (

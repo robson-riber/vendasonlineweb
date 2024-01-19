@@ -1,4 +1,4 @@
-import axios, { Axios, AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 import {
   ERROR_ACCESS_DANIED,
@@ -57,30 +57,30 @@ export default class ConnectionAPI {
 }
 
 export const connectionAPIGet = async <T>(url: string): Promise<T> => {
-  return ConnectionAPI.connect(url, MethodsEnum.GET);
+  return ConnectionAPI.connect<T>(url, MethodsEnum.GET);
 };
 
 export const connectionAPIDelete = async <T>(url: string): Promise<T> => {
-  return ConnectionAPI.connect(url, MethodsEnum.DELETE);
+  return ConnectionAPI.connect<T>(url, MethodsEnum.DELETE);
 };
 
 export const connectionAPIPost = async <T>(
   url: string,
   body: unknown,
 ): Promise<T> => {
-  return ConnectionAPI.connect(url, MethodsEnum.POST, body);
+  return ConnectionAPI.connect<T>(url, MethodsEnum.POST, body);
 };
 
 export const connectionAPIPut = async <T>(
   url: string,
   body: unknown,
 ): Promise<T> => {
-  return ConnectionAPI.connect(url, MethodsEnum.PUT, body);
+  return ConnectionAPI.connect<T>(url, MethodsEnum.PUT, body);
 };
 
 export const connectionAPIPatch = async <T>(
   url: string,
   body: unknown,
 ): Promise<T> => {
-  return ConnectionAPI.connect(url, MethodsEnum.PATCH, body);
+  return ConnectionAPI.connect<T>(url, MethodsEnum.PATCH, body);
 };

@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 
+import { FirstScreenRoutesEnum } from "../../modules/firstScreen/routes";
 import { AuthType } from "../../modules/login/types/AuthType";
 import { ProductRoutesEnum } from "../../modules/product/routes";
 import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus";
@@ -15,7 +15,6 @@ import { useGlobalContext } from "./useGlobalContext";
 
 export const useRequests = () => {
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const { setNotification, setUser } = useGlobalContext();
 
   const request = async <T>(
@@ -23,6 +22,7 @@ export const useRequests = () => {
     method: MethodType,
     saveGlobal?: (object: T) => void,
     body?: unknown,
+    message?: string,
   ): Promise<T | undefined> => {
     setLoading(true);
 
@@ -32,9 +32,12 @@ export const useRequests = () => {
       body,
     )
       .then((result) => {
-        alert(`Login efetuado com sucesso! ${result}`);
+        //alert(`Login efetuado com sucesso! ${result}`);
         if (saveGlobal) {
           saveGlobal(result);
+        }
+        if (message) {
+          setNotification("Sucesso!", "success", message);
         }
         return result;
       })
@@ -47,15 +50,19 @@ export const useRequests = () => {
     return returnObject;
   };
 
-  const authRequest = async (body: unknown): Promise<void> => {
+  const authRequest = async (
+    navigate: NavigateFunction,
+    body: unknown,
+  ): Promise<void> => {
     setLoading(true);
 
     await connectionAPIPost<AuthType>(URL_AUTH, body)
       .then((result) => {
         setUser(result.user);
         setAuthorizationToken(result.accessToken);
-        setNotification("deu certo", "success");
-        navigate(ProductRoutesEnum.PRODUCT);
+        setNotification("deu certo.", "success");
+        //navigate(ProductRoutesEnum.PRODUCT);
+        navigate(FirstScreenRoutesEnum.FIRST_SCREEN);
         return result;
       })
       .catch(() => {
@@ -69,7 +76,7 @@ export const useRequests = () => {
 
   return {
     loading,
-    request,
     authRequest,
+    request,
   };
 };

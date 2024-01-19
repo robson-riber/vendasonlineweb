@@ -13,7 +13,7 @@ const FirstScreen = () => {
     if (user) {
       navigate(LoginRoutesEnum.LOGIN);
     }
-  }, []);
+  }, [user]);
 
   return <Spin />;
 };
