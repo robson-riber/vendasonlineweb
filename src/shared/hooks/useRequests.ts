@@ -3,7 +3,6 @@ import { NavigateFunction } from "react-router-dom";
 
 import { FirstScreenRoutesEnum } from "../../modules/firstScreen/routes";
 import { AuthType } from "../../modules/login/types/AuthType";
-import { ProductRoutesEnum } from "../../modules/product/routes";
 import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus";
 import { URL_AUTH } from "../constants/urls";
 import { setAuthorizationToken } from "../functions/connection/auth";
