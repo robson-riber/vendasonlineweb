@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../../shared/components/buttons/button/Button";
-import Input from "../../../shared/components/inputs/input/input";
+import Input from "../../../shared/components/inputs/input/Input";
 import { useRequests } from "../../../shared/hooks/useRequests";
 import {
   BackgroundImage,
