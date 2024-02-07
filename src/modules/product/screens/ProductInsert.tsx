@@ -15,6 +15,7 @@ import { connectionAPIPost } from "../../../shared/functions/connection/connecti
 import { useDataContext } from "../../../shared/hooks/useDataContext";
 import { useGlobalContext } from "../../../shared/hooks/useGlobalContext";
 import { useRequests } from "../../../shared/hooks/useRequests";
+import { useCategory } from "../../category/hooks/useCategory";
 import { ProductRoutesEnum } from "../routes";
 import { ProductInsertContainer } from "../styles/productInsert.style";
 
@@ -29,16 +30,10 @@ const ProductInsert = () => {
     image: "",
   });
 
-  const { categories, setCategories } = useDataContext();
+  const { categories } = useCategory();
   const { setNotification } = useGlobalContext();
   const { request } = useRequests();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (categories.length === 0) {
-      request(URL_CATEGORY, MethodsEnum.GET, setCategories);
-    }
-  }, []);
 
   const handleInsertProduct = async () => {
     await connectionAPIPost(URL_PRODUCT, product)
