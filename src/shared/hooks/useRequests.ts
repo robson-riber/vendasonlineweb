@@ -61,7 +61,8 @@ export const useRequests = () => {
         setAuthorizationToken(result.accessToken);
         setNotification("deu certo.", "success");
         //navigate(ProductRoutesEnum.PRODUCT);
-        navigate(FirstScreenRoutesEnum.FIRST_SCREEN);
+        //navigate(FirstScreenRoutesEnum.FIRST_SCREEN);
+        location.href = '/product';
         return result;
       })
       .catch(() => {

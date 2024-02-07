@@ -40,6 +40,12 @@ export const verifyLoggedIn = async (
       });
   }
 
-  alert("Funcionou");
+  //alert("Funcionou");
   return null;
+};
+
+export const logout = () => {
+
+  unsetAuthorizationToken();
+  location.href = '/login';
 };
