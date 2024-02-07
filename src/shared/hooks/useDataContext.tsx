@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import { CategoryType } from "../types/CategoryType";
 
+import { CategoryType } from "../types/CategoryType";
 import { ProductType } from "../types/ProductType";
 
 interface DataContext {
@@ -51,6 +51,6 @@ export const useDataContext = () => {
     products: data?.products || [],
     categories: data?.categories || [],
     setProducts,
-    setCategories
+    setCategories,
   };
 };

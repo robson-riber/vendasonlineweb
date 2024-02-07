@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import Input, { InputProps } from '../inputs/input/Input';
+import { useEffect, useState } from "react";
+
+import Input, { InputProps } from "../inputs/input/Input";
 
 interface InputMoneyProps extends InputProps {
   value: number;
@@ -9,24 +10,31 @@ interface InputMoneyProps extends InputProps {
 
 const DECIMAL_SIZE = 2;
 
-const InputMoney = ({ value, onChange, addonBefore = 'R$', ...props }: InputMoneyProps) => {
+const InputMoney = ({
+  value,
+  onChange,
+  addonBefore = "R$",
+  ...props
+}: InputMoneyProps) => {
   const [currentValue, setCurrentValue] = useState<string>(`${value}`);
 
   useEffect(() => {
     const valueString = `${value}`;
 
-    if (!/\D/.test(valueString.replace('.', ''))) {
-      setCurrentValue(value.toFixed(DECIMAL_SIZE).toString().replace('.', ','));
+    if (!/\D/.test(valueString.replace(".", ""))) {
+      setCurrentValue(value.toFixed(DECIMAL_SIZE).toString().replace(".", ","));
     }
   }, [value]);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const valueRemoved = event.target.value.replace(',', '');
+    const valueRemoved = event.target.value.replace(",", "");
 
     const sizeSlice = valueRemoved.length - DECIMAL_SIZE;
-    const newValue = [valueRemoved.slice(0, sizeSlice), '.', valueRemoved.slice(sizeSlice)].join(
-      '',
-    );
+    const newValue = [
+      valueRemoved.slice(0, sizeSlice),
+      ".",
+      valueRemoved.slice(sizeSlice),
+    ].join("");
 
     onChange({
       ...event,

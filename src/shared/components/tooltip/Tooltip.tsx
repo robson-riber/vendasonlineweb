@@ -1,15 +1,15 @@
+import { Tooltip as TooltipAntd } from "antd";
+
 import { ContainerExternal, ContainerTooltip } from "./tooltip.style";
-import { Tooltip as TooltipAntd } from 'antd';
 
 interface TooltipProps {
   children: React.ReactNode;
   tooltip?: React.ReactNode;
-  title?: string; 
+  title?: string;
 }
 
 const Tooltip = ({ children, tooltip, title }: TooltipProps) => {
-
-  if (title){
+  if (title) {
     <TooltipAntd title={title}>{children}</TooltipAntd>;
   }
 

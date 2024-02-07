@@ -1,105 +1,92 @@
-import { ContainerLogoName, ContainerMenu, LogoMenu, NameCompany } from './menu.style';
+import {
+  CaretRightOutlined,
+  CustomerServiceOutlined,
+  HomeOutlined,
+  LaptopOutlined,
+  SafetyCertificateOutlined,
+} from "@ant-design/icons";
+import type { MenuProps, MenuTheme } from "antd";
+import { Menu as MenuAntd } from "antd";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import React, { useState } from 'react';
-import { CaretRightOutlined, CustomerServiceOutlined, HomeOutlined, LaptopOutlined, SafetyCertificateOutlined, } from '@ant-design/icons';
-import type { MenuProps, MenuTheme } from 'antd';
-import { Menu as MenuAntd } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { ProductRoutesEnum } from '../../../modules/product/routes';
+import { ProductRoutesEnum } from "../../../modules/product/routes";
+import {
+  ContainerLogoName,
+  ContainerMenu,
+  LogoMenu,
+  NameCompany,
+} from "./menu.style";
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key?: React.Key | null,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-  type?: 'group',
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type,
-  } as MenuItem;
-}
+type MenuItem = Required<MenuProps>["items"][number];
 
 const Menu = () => {
-
-  const [theme, setTheme] = useState<MenuTheme>('dark');
-  const [current, setCurrent] = useState('1');
+  const [theme] = useState<MenuTheme>("dark");
+  const [current, setCurrent] = useState("1");
   const navigate = useNavigate();
 
-  const changeTheme = (value: boolean) => {
-    setTheme(value ? 'dark' : 'light');
-  };
-
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
+  const onClick: MenuProps["onClick"] = (e) => {
+    console.log("click ", e);
     setCurrent(e.key);
   };
 
   const items: MenuItem[] = [
     {
-      key: 'Home',
-      label: 'Principal',
-      icon: <HomeOutlined/>
+      key: "Home",
+      label: "Principal",
+      icon: <HomeOutlined />,
     },
     {
-      key: 'products',
-      label: 'Produtos',
-      icon: <LaptopOutlined/>,
+      key: "products",
+      label: "Produtos",
+      icon: <LaptopOutlined />,
       children: [
         {
-          key: 'products_view',
-          label: 'Visualizar',
+          key: "products_view",
+          label: "Visualizar",
           icon: <CaretRightOutlined />,
           onClick: () => navigate(ProductRoutesEnum.PRODUCT),
         },
         {
-          key: 'products_insert',
-          label: 'Inserir',
+          key: "products_insert",
+          label: "Inserir",
           icon: <CaretRightOutlined />,
           onClick: () => navigate(ProductRoutesEnum.PRODUCT_INSERT),
-        }  
-      ]
+        },
+      ],
     },
 
     {
-      key: 'category',
-      label: 'Categorias',
-      icon: <LaptopOutlined/>,
+      key: "category",
+      label: "Categorias",
+      icon: <LaptopOutlined />,
       children: [
         {
-          key: 'category_view',
-          label: 'Visualizar',
+          key: "category_view",
+          label: "Visualizar",
           icon: <CaretRightOutlined />,
           onClick: () => navigate(ProductRoutesEnum.PRODUCT),
         },
         {
-          key: 'category_insert',
-          label: 'Inserir',
+          key: "category_insert",
+          label: "Inserir",
           icon: <CaretRightOutlined />,
           onClick: () => navigate(ProductRoutesEnum.PRODUCT_INSERT),
-        }  
-      ]
+        },
+      ],
     },
 
     {
-      key: 'order',
-      label: 'Pedidos',
-      icon: <SafetyCertificateOutlined/>
+      key: "order",
+      label: "Pedidos",
+      icon: <SafetyCertificateOutlined />,
     },
     {
-      key: 'user',
-      label: 'Clientes',
-      icon: <CustomerServiceOutlined/>
+      key: "user",
+      label: "Clientes",
+      icon: <CustomerServiceOutlined />,
     },
-    
   ];
-
-
 
   return (
     <ContainerMenu>
@@ -111,12 +98,11 @@ const Menu = () => {
         theme={theme}
         onClick={onClick}
         style={{ width: 240 }}
-        defaultOpenKeys={['sub1']}
+        defaultOpenKeys={["sub1"]}
         selectedKeys={[current]}
         mode="inline"
         items={items}
       />
-
     </ContainerMenu>
   );
 };

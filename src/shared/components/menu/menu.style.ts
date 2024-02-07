@@ -1,6 +1,7 @@
-import { Typography } from 'antd';
-import styled from 'styled-components';
-import SVGLogo from '../icons/SVGLogo';
+import { Typography } from "antd";
+import styled from "styled-components";
+
+import SVGLogo from "../icons/SVGLogo";
 
 /*
     https://www.cssmatic.com/box-shadow

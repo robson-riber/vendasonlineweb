@@ -18,5 +18,4 @@ export const productScreens: RouteObject[] = [
     path: ProductRoutesEnum.PRODUCT_INSERT,
     element: <ProductInsert />,
   },
-
 ];

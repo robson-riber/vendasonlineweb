@@ -1,9 +1,9 @@
 import { Input, TableProps } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Button from "../../../shared/components/buttons/button/Button";
 import Screen from "../../../shared/components/screen/Screen";
-
 import Table from "../../../shared/components/table/Table";
 import { URL_PRODUCT } from "../../../shared/constants/urls";
 import { MethodsEnum } from "../../../shared/enums/method.enum";
@@ -14,7 +14,11 @@ import { ProductType } from "../../../shared/types/ProductType";
 import CategoryColumn from "../components/CategoryColumn";
 import TooltipImage from "../components/TooltipImage";
 import { ProductRoutesEnum } from "../routes";
-import { BoxButtons, LimiteSizeButton, LimiteSizeInput } from "../styles/product.style";
+import {
+  BoxButtons,
+  LimiteSizeButton,
+  LimiteSizeInput,
+} from "../styles/product.style";
 
 /**
   https://ant.design/components/table
@@ -33,7 +37,7 @@ const columns: TableProps<ProductType>["columns"] = [
     title: "Nome",
     dataIndex: "name",
     key: "name",
-    sorter: (a, b) => a.name.localeCompare(b.name),  
+    sorter: (a, b) => a.name.localeCompare(b.name),
     render: (text) => <a>{text}</a>,
   },
   {
@@ -51,14 +55,13 @@ const columns: TableProps<ProductType>["columns"] = [
 ];
 
 const listBreadcrumb = [
-    {
-      name: 'HOME',
-    },
-    {
-      name: 'PRODUTOS'
-    }
-  ];
-
+  {
+    name: "HOME",
+  },
+  {
+    name: "PRODUTOS",
+  },
+];
 
 const Product = () => {
   const { products, setProducts } = useDataContext();
@@ -75,32 +78,39 @@ const Product = () => {
   }, []);
 
   const handleOnClickInsert = () => {
-    navigate(ProductRoutesEnum.PRODUCT_INSERT)
-  }
-
+    navigate(ProductRoutesEnum.PRODUCT_INSERT);
+  };
 
   const onSearch = (value: string) => {
-    if (!value){
+    if (!value) {
       setProductsFiltered([...products]);
-    }else {
-      setProductsFiltered([...productsFiltered.filter((product) => product.name.includes(value) )])
+    } else {
+      setProductsFiltered([
+        ...productsFiltered.filter((product) => product.name.includes(value)),
+      ]);
     }
   };
 
   return (
-    <Screen listBreadcrumb={listBreadcrumb} >
+    <Screen listBreadcrumb={listBreadcrumb}>
       <BoxButtons>
         <LimiteSizeInput>
-          <Search placeholder="Buscar produto" onSearch={onSearch} enterButton></Search>
+          <Search
+            placeholder="Buscar produto"
+            onSearch={onSearch}
+            enterButton
+          ></Search>
         </LimiteSizeInput>
-    
+
         <LimiteSizeButton>
-          <Button type="primary" onClick={handleOnClickInsert}>Inserir</Button>
-        </LimiteSizeButton>     
+          <Button type="primary" onClick={handleOnClickInsert}>
+            Inserir
+          </Button>
+        </LimiteSizeButton>
       </BoxButtons>
       <Table columns={columns} dataSource={productsFiltered} />
     </Screen>
-  ) 
+  );
 };
 
 export default Product;

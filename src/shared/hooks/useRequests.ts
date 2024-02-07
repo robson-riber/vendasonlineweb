@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavigateFunction } from "react-router-dom";
 
-import { FirstScreenRoutesEnum } from "../../modules/firstScreen/routes";
 import { AuthType } from "../../modules/login/types/AuthType";
 import { ERROR_INVALID_PASSWORD } from "../constants/errosStatus";
 import { URL_AUTH } from "../constants/urls";
@@ -62,7 +61,7 @@ export const useRequests = () => {
         setNotification("deu certo.", "success");
         //navigate(ProductRoutesEnum.PRODUCT);
         //navigate(FirstScreenRoutesEnum.FIRST_SCREEN);
-        location.href = '/product';
+        location.href = "/product";
         return result;
       })
       .catch(() => {

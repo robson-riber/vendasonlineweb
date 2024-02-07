@@ -46,7 +46,7 @@ export default class ConnectionAPI {
           case 403:
             location.href = "/login";
             throw new Error(ERROR_ACCESS_DANIED);
-           
+
           default:
             throw new Error(ERROR_CONNECTION);
         }

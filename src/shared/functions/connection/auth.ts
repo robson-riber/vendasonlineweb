@@ -1,4 +1,5 @@
 import { redirect } from "react-router-dom";
+
 import { LoginRoutesEnum } from "../../../modules/login/routes";
 import { UserType } from "../../../modules/login/types/UserType";
 import { AUTHORIZATION_KEY } from "../../constants/authorizationConstants";
@@ -47,7 +48,6 @@ export const verifyLoggedIn = async (
 };
 
 export const logout = () => {
-
   unsetAuthorizationToken();
-  location.href = '/login';
+  location.href = "/login";
 };
